@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import InputArea from "./InputArea";
 
-function ToDoItem({ text, id, onDeleteClick, onEditClick }) {
+function ToDoItem({ item, onDeleteClick, onEditClick }) {
   const [isEdit, setIsEdit] = useState(false);
   return (
     <div className="deleteList">
@@ -9,15 +9,15 @@ function ToDoItem({ text, id, onDeleteClick, onEditClick }) {
         <InputArea
           onAdd={(text) => {
             if (!text) return;
-            onEditClick(id, text);
+            onEditClick(item?.id, text);
             setIsEdit(false);
           }}
           type="edit"
-          value={text}
+          value={item?.name}
           onCancel={() => setIsEdit(false)}
         />
       ) : (
-        <li>{text}</li>
+        <li>{item?.name}</li>
       )}
       {!isEdit ? (
         <div className="list-actions">
@@ -27,7 +27,7 @@ function ToDoItem({ text, id, onDeleteClick, onEditClick }) {
           <button
             className="deleteButton"
             onClick={() => {
-              onDeleteClick(id);
+              onDeleteClick(item?.id);
             }}
           >
             Delete
