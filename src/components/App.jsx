@@ -46,8 +46,6 @@ function App() {
     }
   };
 
-  console.log(items);
-
   const deleteItem = async (id) => {
     try {
       const response = await axios.delete(
