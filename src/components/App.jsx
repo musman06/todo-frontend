@@ -39,7 +39,7 @@ function App() {
         }
       );
       if (response?.status === 201) {
-        setItems((prevItems) => [...prevItems, newItem]);
+        setItems((prevItems) => [...prevItems, response?.data?.data?.todo]);
       } else {
         console.error("Error making post request");
       }
