@@ -19,9 +19,9 @@ To run this project locally, follow these steps:
 
 1. Clone the repository:
 
-`git clone https://github.com/yourusername/todo-list.git`
+`git clone https://github.com/yourusername/todo-frontend.git`
 
-`cd todo-list`
+`cd todo-frontend`
 
 2. Install dependencies:
 
