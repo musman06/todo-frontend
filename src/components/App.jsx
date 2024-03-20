@@ -9,7 +9,9 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/v1/todo");
+        const response = await axios.get(
+          "https://right-nostalgic-guilty.glitch.me//api/v1/todo"
+        );
         setItems((el) => response?.data?.data?.todos || []);
       } catch (error) {
         console.error("There was an error!", error);
@@ -28,9 +30,12 @@ function App() {
       dueDate: new Date(),
     };
     try {
-      const response = await axios.post("http://localhost:3000/api/v1/todo", {
-        ...newItem,
-      });
+      const response = await axios.post(
+        "https://right-nostalgic-guilty.glitch.me//api/v1/todo",
+        {
+          ...newItem,
+        }
+      );
       if (response?.status === 201) {
         setItems((prevItems) => [...prevItems, response?.data?.data?.todo]);
       } else {
@@ -46,8 +51,7 @@ function App() {
   const deleteItem = async (id) => {
     try {
       const response = await axios.delete(
-        // `https://sapphire-chatter-vertebra.glitch.me/api/v1/todo/${id}`
-        `http://localhost:3000/api/v1/todo/${id}`
+        `https://right-nostalgic-guilty.glitch.me//api/v1/todo/${id}`
       );
       if (response?.status === 200) {
         setItems((prevItems) => prevItems?.filter((item) => item?.id !== id));
@@ -63,8 +67,7 @@ function App() {
     const newItem = items?.find((item) => item?.id === id);
     try {
       const response = await axios.patch(
-        // `https://sapphire-chatter-vertebra.glitch.me/api/v1/todo/${id}`,
-        `http://localhost:3000/api/v1/todo/${id}`,
+        `https://right-nostalgic-guilty.glitch.me//api/v1/todo/${id}`,
         {
           ...newItem,
           todoName: text,
