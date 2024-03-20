@@ -13,11 +13,11 @@ function ToDoItem({ item, onDeleteClick, onEditClick }) {
             setIsEdit(false);
           }}
           type="edit"
-          value={item?.name}
+          value={item?.todoName}
           onCancel={() => setIsEdit(false)}
         />
       ) : (
-        <li>{item?.name}</li>
+        <li>{item?.todoName}</li>
       )}
       {!isEdit ? (
         <div className="list-actions">

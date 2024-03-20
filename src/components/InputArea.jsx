@@ -11,21 +11,34 @@ function InputArea({ onAdd, type, value = "", onCancel }) {
   return (
     <div className="form">
       <input onChange={handleChange} type="text" value={inputText} />
-      <div className="input-actions">
-        <button
-          onClick={() => {
-            onAdd(inputText);
-            setInputText("");
-          }}
-        >
-          <span>{type === "edit" ? "Save" : "Add"}</span>
-        </button>
-        {type === "edit" && (
-          <button className="deleteButton" onClick={onCancel}>
-            <span>Cancel</span>
+      {type !== "edit" && (
+        <div className="input-actions">
+          <button
+            onClick={() => {
+              onAdd(inputText);
+              setInputText("");
+            }}
+          >
+            <span>Add</span>
           </button>
-        )}
-      </div>
+        </div>
+      )}
+      {type === "edit" && (
+        <div className="input-actions">
+          <button
+            onClick={() => {
+              onAdd(inputText);
+              setInputText("");
+            }}
+            className="editButton"
+          >
+            Save
+          </button>
+          <button className="deleteButton" onClick={onCancel}>
+            Cancel
+          </button>
+        </div>
+      )}
     </div>
   );
 }
