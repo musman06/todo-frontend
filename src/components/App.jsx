@@ -9,7 +9,9 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/v1/todo");
+        const response = await axios.get(
+          "https://sapphire-chatter-vertebra.glitch.me/api/v1/todo"
+        );
         setItems((el) => response?.data?.data?.todos || []);
       } catch (error) {
         console.error("There was an error!", error);
@@ -30,9 +32,12 @@ function App() {
       updatedDate: "20-03-2024",
     };
     try {
-      const response = await axios.post("http://localhost:3000/api/v1/todo", {
-        ...newItem,
-      });
+      const response = await axios.post(
+        "https://sapphire-chatter-vertebra.glitch.me/api/v1/todo",
+        {
+          ...newItem,
+        }
+      );
       if (response?.status === 201) {
         setItems((prevItems) => [...prevItems, newItem]);
       } else {
@@ -48,7 +53,7 @@ function App() {
   const deleteItem = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/api/v1/todo/${id}`
+        `https://sapphire-chatter-vertebra.glitch.me/api/v1/todo/${id}`
       );
       if (response?.status === 200) {
         setItems((prevItems) => prevItems?.filter((item) => item?.id !== id));
@@ -64,7 +69,7 @@ function App() {
     const newItem = items?.find((item) => item?.id === id);
     try {
       const response = await axios.patch(
-        `http://localhost:3000/api/v1/todo/${id}`,
+        `https://sapphire-chatter-vertebra.glitch.me/api/v1/todo/${id}`,
         {
           ...newItem,
           name: text,
