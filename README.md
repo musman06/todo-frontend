@@ -27,6 +27,9 @@ To run this project locally, follow these steps:
 
 `npm install`
 
-1. Start App:
+3. Start App:
 
 `npm start`
+
+## Deployment Link
+Frontend URL: https://bucolic-melba-46c7a7.netlify.app/
