@@ -31,5 +31,8 @@ To run this project locally, follow these steps:
 
 `npm start`
 
+### Note
+First, run the backend application from the URL "https://right-nostalgic-guilty.glitch.me/api/v1/todo" so that the project awakes from sleep and starts working properly since Glitch service is free and makes the project sleep after a few minutes of inactivity.
+
 ## Deployment Link
 Frontend URL: https://bucolic-melba-46c7a7.netlify.app/
