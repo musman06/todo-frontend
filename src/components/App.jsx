@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { CircularProgress } from "@mui/material";
 import axios from "axios";
 import ToDoItem from "./ToDoItem";
 import InputArea from "./InputArea";
 
 function App() {
   const [items, setItems] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setisLoading(true);
         const response = await axios.get(
           "https://right-nostalgic-guilty.glitch.me//api/v1/todo"
         );
         setItems((el) => response?.data?.data?.todos || []);
       } catch (error) {
         console.error("There was an error!", error);
+      } finally {
+        setisLoading(false);
       }
     };
 
@@ -91,18 +96,30 @@ function App() {
         <h1>To-Do List</h1>
       </div>
       <InputArea onAdd={addItem} />
-      <div>
-        <ul className="todoslist">
-          {items?.map((todoItem, index) => (
-            <ToDoItem
-              key={todoItem?.id}
-              item={todoItem}
-              onDeleteClick={deleteItem}
-              onEditClick={handleEdit}
-            />
-          ))}
-        </ul>
-      </div>
+      {isLoading ? (
+        <div className="loader">
+          <CircularProgress style={{ color: "#000" }} />
+        </div>
+      ) : null}
+      {items?.length ? (
+        <div className="list-div">
+          <ul className="todoslist">
+            {items?.map((todoItem, index) => (
+              <ToDoItem
+                key={todoItem?.id}
+                item={todoItem}
+                onDeleteClick={deleteItem}
+                onEditClick={handleEdit}
+              />
+            ))}
+          </ul>
+        </div>
+      ) : null}
+      {!items?.length && !isLoading && (
+        <div className="loader">
+          <span>Empty List</span>
+        </div>
+      )}
     </div>
   );
 }
